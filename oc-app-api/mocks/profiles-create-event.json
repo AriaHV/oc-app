@@ -1,0 +1,8 @@
+{
+    "body": "{\"handle\":\"TestUser\",\"displayName\":\"John Doe\",\"bio\":\"This is a test bio.\",\"profilePicture\":\"testProfilePicture\"}",
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "TEST-USER-ID"
+      }
+    }
+}
