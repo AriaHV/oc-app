@@ -75,6 +75,15 @@ functions:
           path: handles
           method: post
           cors: true
-          authorizer: aws_iam          
+          authorizer: aws_iam 
+          
+  handles-get:
+    handler: handles-get.main
+    events:
+      - http:
+          path: handles/{handle}
+          method: get
+          cors: true
+          authorizer: aws_iam
 
   
