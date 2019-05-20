@@ -68,4 +68,31 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  handles-create:
+    handler: handles-create.main
+    events:
+      - http:
+          path: handles
+          method: post
+          cors: true
+          authorizer: aws_iam 
+          
+  handles-get:
+    handler: handles-get.main
+    events:
+      - http:
+          path: handles/{handle}
+          method: get
+          cors: true
+          authorizer: aws_iam
+
+  handles-delete:
+    handler: handles-delete.main
+    events:
+      - http:
+          path: handles/{handle}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
   
