@@ -86,4 +86,13 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  handles-delete:
+    handler: handles-delete.main
+    events:
+      - http:
+          path: handles/{handle}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
   
