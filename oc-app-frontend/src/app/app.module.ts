@@ -7,6 +7,10 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +19,8 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AmplifyAngularModule
+    AmplifyAngularModule,
+    ReactiveFormsModule
   ],
   providers: [
     AmplifyService
