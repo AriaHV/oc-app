@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-signup-page',
@@ -15,15 +16,42 @@ export class SignupPageComponent implements OnInit {
 
   }
 
+  state = {
+    email: "",
+    password: "",
+    handle: "",
+    user: null,
+    confirmationCode: ""
+  }
+
   signupForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    handle: new FormControl('', Validators.required)
+    'email': new FormControl('', Validators.required),
+    'password': new FormControl('', Validators.required),
+    'handle': new FormControl('', Validators.required)
   });
 
+  confirmationForm = new FormGroup({
+    'code': new FormControl('', Validators.required)
+  })
+
   onSubmit() {
-    console.warn(this.signupForm.value);
+    this.state.email = this.signupForm.value['email'];
+    this.state.password = this.signupForm.value['password'];
+    this.state.handle = this.signupForm.value['handle'];
+
+    this.state.user = Auth.signUp({
+      username: this.state.email,
+      password: this.state.password
+    });
   }
+
+  onSubmitConfirmation() {
+    this.state.confirmationCode = this.confirmationForm.value['code'];
+
+    Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
+    //Auth.signIn(this.state.email, this.state.password);
+  }
+
 
 
 
