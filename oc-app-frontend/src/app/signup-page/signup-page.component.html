@@ -1,27 +1,42 @@
 <div class="container">
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">e-mail</span>
+  <div *ngIf="!state.user">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">e-mail</span>
+        </div>
+        <input type="email" class="form-control" placeholder="person@example.com" aria-label="email"
+          aria-describedby="emailHelp" formControlName="email">
       </div>
-      <input type="email" class="form-control" placeholder="person@example.com" aria-label="email"
-        aria-describedby="emailHelp" formControlName="email">
-    </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">password</span>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">password</span>
+        </div>
+        <input type="password" class="form-control" aria-label="password" formControlName="password">
       </div>
-      <input type="password" class="form-control" aria-label="password" formControlName="password">
-    </div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">example.com/p/</span>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">example.com/p/</span>
+        </div>
+        <input type="text" class="form-control" placeholder="handle" aria-label="handle" formControlName="handle">
       </div>
-      <input type="text" class="form-control" placeholder="handle" aria-label="handle" formControlName="handle">
-    </div>
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="state.user" (ngSubmit)="onSubmitConfirmation()">
+    <form [formGroup]="confirmationForm" (ngSubmit)="onSubmitConfirmation()">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">confirmation code</span>
+            </div>
+            <input type="text" class="form-control" aria-label="code" formControlName="code">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+  </div>
 </div>
