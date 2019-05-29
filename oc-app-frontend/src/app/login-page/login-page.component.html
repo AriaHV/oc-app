@@ -1,0 +1,22 @@
+<div class="container">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">e-mail</span>
+      </div>
+      <input type="email" class="form-control" placeholder="person@example.com" aria-label="email"
+        aria-describedby="emailHelp" formControlName="email">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">password</span>
+      </div>
+      <input type="password" class="form-control" aria-label="password" formControlName="password">
+    </div>
+    
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+  </form>
+
+</div>

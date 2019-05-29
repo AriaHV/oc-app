@@ -8,13 +8,15 @@ import { SignupPageComponent } from './signup-page/signup-page.component';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
