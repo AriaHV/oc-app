@@ -14,7 +14,7 @@ export class AppComponent {
   signedIn: boolean;
   user: any;
 
-  constructor (private amplifyService: AmplifyService, private router: Router) {
+  constructor (private amplifyService: AmplifyService) {
     this.amplifyService.authStateChange$
     .subscribe(authState => {
       this.signedIn = authState.state === 'signedIn';
@@ -22,7 +22,6 @@ export class AppComponent {
         this.user = null;
       } else {
         this.user = authState.user;
-        this.router.navigate(['']);
       }
     });
   }

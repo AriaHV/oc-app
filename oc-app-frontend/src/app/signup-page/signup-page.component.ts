@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Auth } from 'aws-amplify';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-page',
@@ -10,7 +11,7 @@ import { Auth } from 'aws-amplify';
 
 export class SignupPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
@@ -47,7 +48,14 @@ export class SignupPageComponent implements OnInit {
     let confirmationCode = this.confirmationForm.value['code'];
 
     Auth.confirmSignUp(this.email, confirmationCode);
-    Auth.signIn(this.email, this.password);
+
+    try {
+      Auth.signIn(this.email, this.password);
+    } catch (e) {
+      alert(e.message);
+    }
+
+    this.router.navigate(['']);
   }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Auth } from 'aws-amplify';
 import { AmplifyService } from 'aws-amplify-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +11,7 @@ import { AmplifyService } from 'aws-amplify-angular';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
@@ -30,6 +31,7 @@ export class LoginPageComponent implements OnInit {
       alert(e.message);
     }
     
+    this.router.navigate(['']);
   }
 
 }
