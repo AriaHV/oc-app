@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="!state.user">
+  <div *ngIf="!submitted">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -8,26 +8,26 @@
         <input type="email" class="form-control" placeholder="person@example.com" aria-label="email"
           aria-describedby="emailHelp" formControlName="email">
       </div>
-
+  
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">password</span>
         </div>
         <input type="password" class="form-control" aria-label="password" formControlName="password">
       </div>
-
+  
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">example.com/p/</span>
         </div>
         <input type="text" class="form-control" placeholder="handle" aria-label="handle" formControlName="handle">
       </div>
-
+  
       <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
     </form>
   </div>
 
-  <div *ngIf="state.user" (ngSubmit)="onSubmitConfirmation()">
+  <div *ngIf="submitted">
     <form [formGroup]="confirmationForm" (ngSubmit)="onSubmitConfirmation()">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
