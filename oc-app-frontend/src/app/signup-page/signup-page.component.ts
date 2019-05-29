@@ -16,13 +16,9 @@ export class SignupPageComponent implements OnInit {
 
   }
 
-  state = {
-    email: "",
-    password: "",
-    handle: "",
-    user: null,
-    confirmationCode: ""
-  }
+  email: string;
+  password: string;
+  submitted = false;
 
   signupForm = new FormGroup({
     'email': new FormControl('', Validators.required),
@@ -35,21 +31,23 @@ export class SignupPageComponent implements OnInit {
   })
 
   onSubmit() {
-    this.state.email = this.signupForm.value['email'];
-    this.state.password = this.signupForm.value['password'];
-    this.state.handle = this.signupForm.value['handle'];
+    this.email = this.signupForm.value['email'];
+    this.password = this.signupForm.value['password'];
+    let handle = this.signupForm.value['handle'];
 
-    this.state.user = Auth.signUp({
-      username: this.state.email,
-      password: this.state.password
+    Auth.signUp({
+      username: this.email,
+      password: this.password
     });
+
+    this.submitted = true;
   }
 
   onSubmitConfirmation() {
-    this.state.confirmationCode = this.confirmationForm.value['code'];
+    let confirmationCode = this.confirmationForm.value['code'];
 
-    Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-    //Auth.signIn(this.state.email, this.state.password);
+    Auth.confirmSignUp(this.email, confirmationCode);
+    Auth.signIn(this.email, this.password);
   }
 
 
