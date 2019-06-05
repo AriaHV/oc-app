@@ -9,6 +9,7 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 
@@ -16,7 +17,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
   declarations: [
     AppComponent,
     SignupPageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
