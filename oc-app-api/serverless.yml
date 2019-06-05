@@ -72,7 +72,7 @@ functions:
     handler: profiles-delete.main
     events:
       - http:
-          path: profiles/{id}
+          path: profiles
           method: delete
           cors: true
           authorizer: aws_iam

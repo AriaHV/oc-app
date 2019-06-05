@@ -1,5 +1,7 @@
 {
-    "pathParameters": {
-      "id": "TEST-USER-ID"
+    "requestContext": {
+      "identity": {
+        "cognitoIdentityId": "TEST-USER-ID"
+      }
     }
 }
