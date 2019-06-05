@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { Auth } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 import { Router } from '@angular/router';
+import defaults from '../defaults';
 
 @Component({
   selector: 'app-signup-page',
@@ -19,6 +20,7 @@ export class SignupPageComponent implements OnInit {
 
   email: string;
   password: string;
+  handle: string;
   submitted = false;
 
   signupForm = new FormGroup({
@@ -31,10 +33,10 @@ export class SignupPageComponent implements OnInit {
     'code': new FormControl('', Validators.required)
   })
 
-  onSubmit() {
+  async onSubmit() {
     this.email = this.signupForm.value['email'];
     this.password = this.signupForm.value['password'];
-    let handle = this.signupForm.value['handle'];
+    this.handle = this.signupForm.value['handle'];
 
     Auth.signUp({
       username: this.email,
@@ -44,18 +46,43 @@ export class SignupPageComponent implements OnInit {
     this.submitted = true;
   }
 
-  onSubmitConfirmation() {
+  async onSubmitConfirmation() {
     let confirmationCode = this.confirmationForm.value['code'];
 
-    Auth.confirmSignUp(this.email, confirmationCode);
+    await Auth.confirmSignUp(this.email, confirmationCode);
 
     try {
-      Auth.signIn(this.email, this.password);
+      await Auth.signIn(this.email, this.password);
     } catch (e) {
       alert(e.message);
     }
 
+    try {
+      await this.createProfile({
+        "handle": this.handle,
+        "displayName": this.handle,
+        "bio": defaults.profiles.BIO,
+        "profilePicture": defaults.profiles.PROFILE_PICTURE
+      }).then(result => {
+        console.log(result);
+      });
+    } catch (e) {
+      alert(e);
+    }
+
     this.router.navigate(['']);
+  }
+
+  createHandle(handle) {
+    return API.post("handles","/handles", {
+      body: handle
+    });    
+  }
+
+  createProfile(profile) {
+    return API.post("profiles","/profiles", {
+      body: profile
+    });
   }
 
 
