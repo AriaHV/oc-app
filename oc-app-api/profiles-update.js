@@ -6,7 +6,7 @@ export async function main(event, context) {
   const params = {
     TableName: "profiles",
     Key: {
-      userId: data.userId
+      userId: event.requestContext.identity.cognitoIdentityId
     },
 
     UpdateExpression: "SET displayName = :displayName, bio = :bio, profilePicture = :profilePicture",
