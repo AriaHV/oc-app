@@ -38,7 +38,7 @@ export class SignupPageComponent implements OnInit {
     this.password = this.signupForm.value['password'];
     this.handle = this.signupForm.value['handle'];
 
-    Auth.signUp({
+    await Auth.signUp({
       username: this.email,
       password: this.password
     });
@@ -63,6 +63,16 @@ export class SignupPageComponent implements OnInit {
         "displayName": this.handle,
         "bio": defaults.profiles.BIO,
         "profilePicture": defaults.profiles.PROFILE_PICTURE
+      }).then(result => {
+        console.log(result);
+      });
+    } catch (e) {
+      alert(e);
+    }
+
+    try {
+      await this.createHandle({
+        "handle": this.handle
       }).then(result => {
         console.log(result);
       });
