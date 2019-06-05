@@ -8,7 +8,7 @@ export  async function main(event, context, callback) {
         TableName: "handles",
         Item: {
             handle: data.handle,
-            userId: data.userId,
+            userId: event.requestContext.identity.cognitoIdentityId,
             administeredAt: Date.now()
         }
     };

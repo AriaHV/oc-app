@@ -1,8 +1,7 @@
 {
-    "body": "{\"handle\":\"TestUser\"}",
     "requestContext": {
         "identity": {
           "cognitoIdentityId": "TEST-USER-ID"
         }
-      }   
+      }
 }

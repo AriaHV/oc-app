@@ -50,6 +50,15 @@ functions:
           cors: true
           authorizer: aws_iam   
 
+  profiles-get-user:
+    handler: profiles-get-user.main
+    events:
+      - http:
+          path: profiles
+          method: get
+          cors: true
+          authorizer: aws_iam   
+
   profiles-update:
     handler: profiles-update.main
     events:
@@ -63,7 +72,7 @@ functions:
     handler: profiles-delete.main
     events:
       - http:
-          path: profiles/{id}
+          path: profiles
           method: delete
           cors: true
           authorizer: aws_iam
