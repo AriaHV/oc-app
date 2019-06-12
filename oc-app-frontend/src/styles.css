@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+.feed-container {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.feed-entry {
+    border-radius: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 16px 32px 16px 32px;    
+}
+
+.feed-entry p {
+    margin-bottom: 0px;
+}
+
+.text-center {
+    text-align: center;
+}
